@@ -3,7 +3,7 @@ public class DoubleLinkedListTest
 	public static void main(String[] args)
 	{
 		// Create a DoubleLinkedList of up to 20 integers (Integer is the wrapper class for int)
-		DoubleLinkedList<Integer> dll_of_integers = new DoubleLinkedList();
+		DoubleLinkedList<Integer> dll_of_integers = new DoubleLinkedList<Integer>();
 
 		System.out.println("Demonstrating dll_of_integers...");
 		System.out.println("Calling insertAtNext(5)...");
