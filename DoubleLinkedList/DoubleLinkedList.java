@@ -9,7 +9,7 @@ class DoubleLinkedList<T> implements DoubleLinkedListInterface<T>
     public DoubleLinkedList()
     {
         head = null;
-		tail = null;
+				tail = null;
         size = 0;
     }
 
