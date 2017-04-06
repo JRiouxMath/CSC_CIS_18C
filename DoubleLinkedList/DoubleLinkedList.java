@@ -25,10 +25,10 @@ class DoubleLinkedList<T> implements DoubleLinkedListInterface<T>
         return size;
     }
 
-    /* Function to insert element at begining */
-    public void insertAtNext(T item)
+    /* Function to insert element at tail */
+    public void insertBack(T item)
     {
-        Node newNode = new Node(item, null, null);        
+        Node newNode = new Node<T>(item, null, null);        
         if(head == null)
         {
             head = newNode;
@@ -49,21 +49,46 @@ class DoubleLinkedList<T> implements DoubleLinkedListInterface<T>
         }
         size++;
     }
+	
+	/* Function to insert element at tail */
+    public void insertFront(T item)
+    {
+        Node newNode = new Node<T>(item, null, null);        
+        if(head == null)
+        {
+            head = newNode;
+			tail = newNode;
+        }
+        else
+        {
+			//Node oldTail = tail;
+			//oldTail.setLinkNext(newNode);
+			//newNode.setLinkPrevious(oldTail);
+			newNode.setLinkNext(head);
+			head.setLinkPrevious(newNode);
+			head=newNode;
+			
+			//while ( current.getLinkNext() != null ) current = current.getLinkNext();
+            //newNode.setLinkPrevious(current);
+            //current.setLinkNext(newNode);
+        }
+        size++;
+    }
 
     /* Function to insert element at index position */
     public void insertAtPos(T item , int indexPosition)
     {
-        Node newNode = new Node(item, null, null);    
+        Node newNode = new Node<T>(item, null, null);    
 
-        if (indexPosition == 1)
+        if (indexPosition == 0)
         {
-            insertAtNext(item);
+            insertBack(item);
         }            
 		else
 		{
 			Node headPtr = head;
 
-			for (int i = 2; i <= size; i++)
+			for (int i = 1; i <= size; i++)
 			{
 				if (i == indexPosition)
 				{
@@ -79,10 +104,22 @@ class DoubleLinkedList<T> implements DoubleLinkedListInterface<T>
 		}
     }
 
+	/* Function to delete element at tail */
+	public void deleteBack()
+	{
+		deleteAtPos(size-1);
+	}
+	
+	/* Function to delete element at front */
+	public void deleteFront()
+	{
+		deleteAtPos(0);
+	}
+	
     /* Function to delete node at position */
     public void deleteAtPos(int indexPosition)
     {        
-        if (indexPosition == 1) 
+        if (indexPosition == 0) 
         {
             if (size == 1)
             {
@@ -106,7 +143,7 @@ class DoubleLinkedList<T> implements DoubleLinkedListInterface<T>
 
         Node nextPtr = head.getLinkNext();
 
-        for (int i = 2; i <= size; i++)
+        for (int i = 1; i < size; i++)
         {
             if (i == indexPosition)
             {
@@ -122,6 +159,35 @@ class DoubleLinkedList<T> implements DoubleLinkedListInterface<T>
         }        
     }    
 
+	/* Function to get node at specified index */
+	public Node<T> getNodeAt(int indexPosition)
+	{
+		Node current = head;
+
+		for (int i = 0; i < size; i++)
+		{
+			if (i == indexPosition) break;
+			else current = current.getLinkNext();		
+		}
+		
+		return current;
+	}
+	
+	/* Function to get data from specified index */
+	public T getDataAt(int indexPosition)
+	{		
+		Node<T> temp = getNodeAt(indexPosition);
+		if ( temp != null ) return temp.getData();
+		return null;
+	}
+	
+	/* Function to Set data at specified index */
+	public void setDataAt(T newItem, int indexPosition)
+	{
+		Node<T> temp = getNodeAt(indexPosition);
+		if ( temp != null ) temp.setData(newItem);
+	}
+	
     /* Function to display status of list */
     public void display()
     {
