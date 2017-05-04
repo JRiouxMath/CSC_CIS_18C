@@ -42,12 +42,14 @@ public class Queue<T> implements QueueInterface<T>
 	// returns the value of the item currently at front of queue
 	public T front()
 	{
+		if ( head==null ) return null;
 		return head.getValue(); // return item stored at head node
 	}
 	
 	// returns the value of the item currently at the end of the queue
     public T back()
 	{
+		if ( tail==null ) return null;
 		return tail.getValue(); // return item stored at tail node
 	}
 	
@@ -87,7 +89,9 @@ public class Queue<T> implements QueueInterface<T>
 			Node<T> oldHead=head;
 			head=head.getNext();
 			oldHead.setNext(null);
-			oldHead.setPrevious(null);
+			//oldHead.setPrevious(null);
+			head.setPrevious(null);
+						
 			numberOfItems--;
 		}
 		return headDataValue;  // returns the data value from the popped head, null if queue empty
