@@ -89,8 +89,7 @@ public class Queue<T> implements QueueInterface<T>
 			Node<T> oldHead=head;
 			head=head.getNext();
 			oldHead.setNext(null);
-			//oldHead.setPrevious(null);
-			head.setPrevious(null);
+			oldHead.setPrevious(null);
 						
 			numberOfItems--;
 		}
