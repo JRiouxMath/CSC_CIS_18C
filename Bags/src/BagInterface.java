@@ -22,7 +22,10 @@ public interface BagInterface<T> {
     
     // returns array of items in bag
     public T[] toArray();
+
+    // resize the array - left as an assignment
+    public boolean resize();
 	
-	// sorts the bag from smallest to largest value - left as an assignment
-	public void sort();
+    // sorts the bag from smallest to largest value - left as an assignment
+    public void sort();
 }
