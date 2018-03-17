@@ -43,7 +43,17 @@ public class Person implements Comparable {
     public int compareTo(Object b)
     {
         Person pb = (Person)b;
-        return this.getLastName().compareTo(pb.getLastName());
+        // ret holds return value of compareTo
+        int ret=this.getLastName().compareTo(pb.getLastName());
+        
+        // in the case both Person objects have same lastname
+        // so we will be also comparing the firstname
+        if (ret==0)
+        {
+            ret=this.getFirstName().compareTo(pb.getFirstName());
+        }
+        
+        return ret;
     }
     
     @Override

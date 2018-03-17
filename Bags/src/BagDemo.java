@@ -19,7 +19,8 @@ public class BagDemo {
         persons_bag.add(new Person("Bjarn","Stroustrup"));
         persons_bag.add(new Person("Ada","Lovelace"));
         persons_bag.add(new Person("Grace","Hopper"));
-        // two persons with same lastname but different firstnames
+        // two persons with same lastname but different firstnames to test
+        // update of compareTo when handling persons with same lasatnames
         persons_bag.add(new Person("John","Doe"));
         persons_bag.add(new Person("Jane","Doe"));
         
