@@ -1,4 +1,4 @@
-public final class Bag<T> implements BagInterface<T> {
+public final class Bag<T extends Object & Comparable> implements BagInterface<T> {
     private T[] bag_items;
     private int num_items;
     
@@ -68,4 +68,58 @@ public final class Bag<T> implements BagInterface<T> {
         for(int i=0;i<this.num_items;i++) arr[i]=this.bag_items[i];
         return arr;
     }            
+    
+    @Override 
+    public String toString()
+    {
+        String out="{";
+        for(int i=0;i<this.num_items-1;i++)
+        {
+            out = out + "{"+bag_items[i].toString()+"}, ";
+        }
+        out = out + "{"+bag_items[num_items-1]+"}}";
+        return out;
+    }
+    
+    public boolean resize()
+    {
+        return false;
+    }
+    
+    private void helper(T a[], int k, int n)
+    {
+        while ( k*2 + 1 < n ) { 
+                    int child = 2*k + 1;    
+
+                    if ((child + 1 < n) && (a[child].compareTo(a[child+1]))< 0) child++;        
+
+                    if (a[k].compareTo(a[child]) < 0) {
+                            //swap( a[child], a[k] );
+                            T temp = a[child];
+                            a[child] = a[k];
+                            a[k] = temp;
+                            k = child;  
+                    }        
+                    else            
+                            return;    
+            }
+    }
+
+    public void sort()
+    {
+            int N = this.num_items;
+
+            for (int i = N/2; i >= 0; i--) { 
+                    helper( bag_items, i, this.num_items);    
+            }     
+
+            while (N-1 > 0) {  
+                    T temp = bag_items[N-1];
+                    bag_items[N-1] = bag_items[0];
+                    bag_items[0] = temp;
+                    helper(bag_items, 0, N-1);
+                    N--;
+            }
+
+    }
 }

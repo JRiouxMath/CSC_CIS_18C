@@ -1,7 +1,7 @@
 public class BagDemo {
 
     public static void main(String[] args) {
-        Bag<String> bag_of_strings = new Bag(5);
+        Bag<String> bag_of_strings = new Bag<String>(5);
         
         bag_of_strings.add("Hello");
         bag_of_strings.add("World!");
@@ -12,13 +12,16 @@ public class BagDemo {
         
         bag_of_strings.sort();
         
-        Bag<Person> persons_bag = new Bag(6);
+        Bag<Person> persons_bag = new Bag<Person>(8);
         persons_bag.add(new Person("Edsger","Dijkstra"));
         persons_bag.add(new Person("Guido","van Rossum"));
         persons_bag.add(new Person("Paul","Conrad"));
         persons_bag.add(new Person("Bjarn","Stroustrup"));
         persons_bag.add(new Person("Ada","Lovelace"));
         persons_bag.add(new Person("Grace","Hopper"));
+        // two persons with same lastname but different firstnames
+        persons_bag.add(new Person("John","Doe"));
+        persons_bag.add(new Person("Jane","Doe"));
         
         System.out.println(persons_bag.toString());
         persons_bag.sort();
@@ -31,7 +34,7 @@ public class BagDemo {
             System.out.printf("a[%d]=%s\n",i,a[i]);
         }
 
-	Bag<Double> bag_of_doubles = new Bag(50);
+	Bag<Double> bag_of_doubles = new Bag<Double>(50);
         
 	// fill the bag of floats with some floating point values
         for(int i=0;i<50;i++)
